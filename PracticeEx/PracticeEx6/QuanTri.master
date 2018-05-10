@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="QuanTri.master.cs" Inherits="PracticeEx6.QuanTri" %>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="SiteContent" runat="server">
+     <asp:ContentPlaceHolder ID="header" runat="server">
+        <p>Đây là header quản trị </p>
+        
+        <asp:Menu ID="Menu12" runat="server" Orientation="Horizontal" Height="16px" Width="305px">
+            <Items>
+                <asp:MenuItem Text="Quản trị 1" Value="Quản trị 1" NavigateUrl="~/QT1.aspx">
+                </asp:MenuItem>
+                <asp:MenuItem Text="Quản trị 2" Value="Quản Trị 2" NavigateUrl="~/QT2.aspx"></asp:MenuItem>
+            </Items>
+            <StaticHoverStyle BackColor="#FF6666" />
+            <StaticMenuItemStyle HorizontalPadding="30px" BackColor="#FFFFCC" BorderColor="Black" BorderWidth="1px" />
+            <StaticMenuStyle BackColor="#FFCC99" />
+        </asp:Menu>
+        <br />
+
+    </asp:ContentPlaceHolder>
+    
+
+    <asp:ContentPlaceHolder ID="maincontent" runat="server">
+        Nội dung Quản trị</asp:ContentPlaceHolder>
+    <br />
+    <asp:ContentPlaceHolder ID="footer" runat="server">
+        Footer quản trị</asp:ContentPlaceHolder>
+    
+
+</asp:Content>
+

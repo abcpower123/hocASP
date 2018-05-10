@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SalesFood.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Sale food</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="Header" runat="server">
+                <h1 align="center">Welcome to Food store</h1>
+                <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" >
+                <Items>
+                    <asp:MenuItem NavigateUrl="~/Home.aspx" Text="HomePage" Value="HomePage"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/List_SearchProduct.aspx" Text="ProductManager" Value="ProductManager">
+                    </asp:MenuItem>
+                </Items>
+                <StaticHoverStyle BackColor="#FF66CC" />
+                <StaticMenuItemStyle HorizontalPadding="30px" BackColor="#FFFF66" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" ForeColor="Black" />
+                <StaticMenuStyle VerticalPadding="20px" BackColor="White" />
+                <StaticSelectedStyle BackColor="#FFCC66" />
+            </asp:Menu>
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Contain" runat="server">
+                <p>
+                    Today we have many new special dishes....</p>
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Footer" runat="server">
+
+                <h3 align="center">Contract us: abcxyz@gmail.com.... Phone:0123456789</h3>
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="NhanVien.master.cs" Inherits="NhanVien" %>
+
+
+<asp:Content ID="Content3" ContentPlaceHolderID="SiteContent" Runat="Server">
+    <asp:ContentPlaceHolder ID="header" runat="server">
+        Đây là header nhân viên
+    </asp:ContentPlaceHolder>
+    <br />
+    <asp:ContentPlaceHolder ID="maincontent" runat="server">
+        Nội dung trang nhân viên
+    </asp:ContentPlaceHolder>
+    <br />
+    <asp:ContentPlaceHolder ID="footer" runat="server">
+        Footer trang nhân viên
+    </asp:ContentPlaceHolder>
+    <br />
+</asp:Content>
+
+

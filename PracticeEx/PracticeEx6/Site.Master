@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="PracticeEx6.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+     <title>Thực hành ví dụ 6</title>
+    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder id="SiteHeader" runat="server">
+            Đây là header website <br />
+            <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
+                <Items>
+                    <asp:MenuItem NavigateUrl="~/Home.aspx" Text="Trang chủ" Value="Trang chủ"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/QT1.aspx" Text="Quản trị" Value="Quản trị">
+                    </asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/NhanVien.aspx" Text="Nhân viên" Value="Nhân viên"></asp:MenuItem>
+                </Items>
+                <StaticHoverStyle BackColor="#FF66CC" />
+                <StaticMenuItemStyle HorizontalPadding="30px" BackColor="#FFFF66" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" ForeColor="Black" />
+                <StaticMenuStyle VerticalPadding="20px" BackColor="White" />
+                <StaticSelectedStyle BackColor="#FFCC66" />
+            </asp:Menu>
+        
+        </asp:ContentPlaceHolder>
+        
+        <p><asp:ContentPlaceHolder ID="SiteContent" runat="server">Nội dung các trang sẽ kế thừa:
+        </asp:ContentPlaceHolder>
+            </p>
+        <asp:ContentPlaceHolder ID="SiteFooter" runat="server">Đây là footer website</asp:ContentPlaceHolder>
+    </div>
+    
+    </form>
+</body>
+</html>

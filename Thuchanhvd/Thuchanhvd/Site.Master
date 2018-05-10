@@ -1,0 +1,25 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.Master.cs" Inherits="Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Thực hành ví dụ 1,2</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder id="SiteHeader" runat="server">
+        Đây là header website
+        </asp:ContentPlaceHolder>
+        <br />
+        <asp:ContentPlaceHolder ID="SiteContent" runat="server">Nội dung các trang sẽ kế thừa:
+        <br />
+        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="SiteFooter" runat="server">Đây là footer website</asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

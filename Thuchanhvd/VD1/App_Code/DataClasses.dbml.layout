@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataClasses">
+  <DataContextMoniker Name="/DataClassesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="e600fb3a-5067-40f9-a4db-c0be72d89426" absoluteBounds="1.375, 1.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DataClassesDataContext/HangHoa" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bd747e97-8892-446b-9922-0857fa3e930c" absoluteBounds="1.3900000000000001, 1.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eca56443-1dd5-4aff-9f3e-86c4756e4f3e" absoluteBounds="4, 1.5, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/DataClassesDataContext/TheLoai" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f1bb5cd5-5afd-4266-84f0-be9e33966bd8" absoluteBounds="4.015, 1.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4 : 2.06814697265625); (3.375 : 2.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataClassesDataContext/TheLoai/TheLoai_HangHoa" />
+      <nodes>
+        <classShapeMoniker Id="eca56443-1dd5-4aff-9f3e-86c4756e4f3e" />
+        <classShapeMoniker Id="e600fb3a-5067-40f9-a4db-c0be72d89426" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
