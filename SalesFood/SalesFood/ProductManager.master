@@ -13,6 +13,7 @@
                 </asp:MenuItem>
                 <asp:MenuItem Text="Add Product" Value="Add new" NavigateUrl="~/AddProduct.aspx"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Edit_Delete.aspx" Text="Delete and Update  products" Value="Delete_Update"></asp:MenuItem>
+                <asp:MenuItem NavigateUrl="~/Report.aspx" Text="Report" Value="Report"></asp:MenuItem>
             </Items>
             <StaticHoverStyle BackColor="#FF6666" />
             <StaticMenuItemStyle HorizontalPadding="30px" BackColor="#FFFFCC" BorderColor="Black" BorderWidth="1px" />
