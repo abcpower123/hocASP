@@ -4,6 +4,25 @@
     <asp:Label ID="Label6" runat="server" Text="ID">
 
     </asp:Label><asp:TextBox ID="txtID" runat="server"></asp:TextBox>
+     <asp:Button ID="Button3" runat="server" Text="check" OnClick="Button3_Click" />
+     <asp:DataList ID="DataList1" runat="server" RepeatColumns="2" RepeatDirection="Horizontal" ShowFooter="False" ShowHeader="False">
+         <ItemTemplate>
+                <asp:Table ID="Table1" runat="server">
+                    <asp:TableRow runat="server">
+                        <asp:TableCell runat="server">
+                    
+                    Name:        <asp:Label ID="lbName" runat="server" Text='<%# Eval("Name") %>'></asp:Label><br />
+                    Price:        <asp:Label ID="lbPrice" runat="server" Text='<%# Eval("Price") %>'></asp:Label>
+
+                        </asp:TableCell>
+                        <asp:TableCell runat="server" Width="200px">
+                            <asp:Image ID="hinhAnh" runat="server" Height="90" Width="180" ImageUrl='<%#Eval("Img")%>' />
+
+                        </asp:TableCell>
+                    </asp:TableRow>
+                </asp:Table>
+            </ItemTemplate>
+     </asp:DataList>
     <br />
     <asp:Label ID="Label1" runat="server" Text="Name"></asp:Label>
     <asp:TextBox ID="txtName" runat="server"></asp:TextBox>

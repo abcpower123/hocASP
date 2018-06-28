@@ -23,8 +23,8 @@ namespace SalesFood
                         //load dropdownlist
                         dpCategory.Items.Add(new ListItem("Select category", "-1"));
 
-                        sqlUtil.sqlcom.CommandText = "SELECT * FROM Category";
-                        SqlDataReader dr2 = sqlUtil.sqlcom.ExecuteReader();
+                       string sql = "SELECT * FROM Category";
+                        SqlDataReader dr2 = sqlUtil.execReader(sql,null);
                         if (dr2.HasRows)
                         {
                             while (dr2.Read())
@@ -69,34 +69,40 @@ namespace SalesFood
             {
                 //get id nexrow
                 var sqlcom = sqlUtil.sqlcom;
-                sqlcom.CommandText = "select dbo.f_NextID()"; //funtion created in database
-                SqlDataReader reader = sqlcom.ExecuteReader(); //alway have result
+                String sql = "select dbo.f_NextID()"; //funtion created in database
+                SqlDataReader reader = sqlUtil.execReader(sql,null); //alway have result
                 reader.Read();
                 int x = reader.GetInt32(0);
                 reader.Close();
+
                 lbNoti.Text = x.ToString();
                 //save img to directory
                 string path = "img/" + x.ToString() + FileUpload1.FileName;
                 FileUpload1.SaveAs(Request.PhysicalApplicationPath+"/"+ path);
+
+
                 //save to db
                 sqlUtil.disconnect();
                 sqlUtil.connect(lbNoti);
-                var sqlcom2 = sqlUtil.sqlcom;
-                sqlcom2.CommandText = "Insert into products values(@name,@price,@description,@img,@cate_id)";
-                sqlcom2.Parameters.Add("name", System.Data.SqlDbType.NVarChar);
-                sqlcom2.Parameters.Add("price", System.Data.SqlDbType.Money);
-                sqlcom2.Parameters.Add("description", System.Data.SqlDbType.NVarChar);
-                sqlcom2.Parameters.Add("img", System.Data.SqlDbType.NVarChar);
-                sqlcom2.Parameters.Add("cate_id", System.Data.SqlDbType.VarChar);
+               
 
-                sqlcom2.Parameters["name"].Value = txtName.Text;
-                sqlcom2.Parameters["price"].Value =txtPrice.Text;
-                sqlcom2.Parameters["description"].Value = txtDescription.Text;
-                sqlcom2.Parameters["img"].Value = path;
-                sqlcom2.Parameters["cate_id"].Value = dpCategory.SelectedValue;
+                String sqlInsert = "Insert into products values(@name,@price,@description,@img,@cate_id)";
+
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter("name", System.Data.SqlDbType.NVarChar));
+                parameters.Add(new SqlParameter("price", System.Data.SqlDbType.Money));
+                parameters.Add(new SqlParameter("description", System.Data.SqlDbType.NVarChar));
+                parameters.Add(new SqlParameter("img", System.Data.SqlDbType.NVarChar));
+                parameters.Add(new SqlParameter("cate_id", System.Data.SqlDbType.VarChar));
+
+                parameters[0].Value = txtName.Text;
+                parameters[1].Value =txtPrice.Text;
+                parameters[2].Value = txtDescription.Text;
+                parameters[3].Value = path;
+                parameters[4].Value = dpCategory.SelectedValue;
                     try
                          {
-                    if (sqlcom2.ExecuteNonQuery() == 1)
+                    if (sqlUtil.execInsUpdDel(sqlInsert,parameters) == 1)
                     {
                         lbNoti.Text = "Insert successfully!";
                     }

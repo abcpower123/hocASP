@@ -7,17 +7,18 @@ using System.Web.UI.WebControls;
 
 namespace SalesFood
 {
-    public partial class Employee : System.Web.UI.MasterPage
+    public partial class Custormer : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["acc"] == null)
-
-                Response.Redirect("Login.aspx");
-             
-            else if (!Session["acc"].Equals("admin"))
             
-                Response.Redirect("Login.aspx");
+                if (Session["acc"] == null)
+
+                    Response.Redirect("Login.aspx");
+
+            Label1.Text ="Welcome "+ Session["name"];
+
+
         }
     }
 }

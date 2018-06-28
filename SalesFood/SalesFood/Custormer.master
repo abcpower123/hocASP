@@ -1,0 +1,13 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Custormer.master.cs" Inherits="SalesFood.Custormer" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    
+</asp:Content>
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="Contain" runat="server">
+    <asp:Label ID="Label1" runat="server" Text="Welcome "></asp:Label>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+    </asp:ContentPlaceHolder>
+</asp:Content>
+

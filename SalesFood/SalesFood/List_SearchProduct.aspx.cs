@@ -28,16 +28,14 @@ namespace SalesFood
         {
             if (sqlUtil.connect(lNoti))
             {
-                DataTable table = new DataTable();
-                var sqlcom = sqlUtil.sqlcom;
                // sqlcom.CommandText = "SELECT * FROM dbo.PRODUCTS";
-                sqlcom.CommandText = "SELECT PRODUCTS.Id as Id,PRODUCTS.Name as Name ,Price,Description,Img,CATEGORY.Name as Name2 FROM dbo.PRODUCTS JOIN dbo.CATEGORY ON CATEGORY.Id = PRODUCTS.Cate_id";
+                String sql = "SELECT PRODUCTS.Id as Id,PRODUCTS.Name as Name ,Price,Description,Img,CATEGORY.Name as Name2 FROM dbo.PRODUCTS JOIN dbo.CATEGORY ON CATEGORY.Id = PRODUCTS.Cate_id";
                 if (!string.IsNullOrEmpty(searchstr))
                 {
                     try
                     {
                         int d = int.Parse(searchstr);
-                        sqlcom.CommandText += " WHERE id=" + searchstr + " or PRODUCTS.Name like N'%" + searchstr + "%' or price =" + searchstr + " or Description like N'%" + searchstr + "%' or CATEGORY.Name like N'%" + searchstr + "%'";
+                        sql+= " WHERE PRODUCTS.Id=" + searchstr + " or PRODUCTS.Name like N'%" + searchstr + "%' or price =" + searchstr + " or Description like N'%" + searchstr + "%' or CATEGORY.Name like N'%" + searchstr + "%'";
 
                     }
                     catch 
@@ -45,20 +43,19 @@ namespace SalesFood
                         try
                         {
                             double d = double.Parse(searchstr);
-                            sqlcom.CommandText += " WHERE PRODUCTS.Name like N'%" + searchstr + "%' or price =" + searchstr + " or Description like N'%" + searchstr + "%' or CATEGORY.Name like N'%" + searchstr + "%'";
+                            sql += " WHERE PRODUCTS.Name like N'%" + searchstr + "%' or price =" + searchstr + " or Description like N'%" + searchstr + "%' or CATEGORY.Name like N'%" + searchstr + "%'";
                         }
                         catch
                         {
-                            sqlcom.CommandText += " WHERE PRODUCTS.Name like N'%" + searchstr + "%' or Description like N'%" + searchstr + "%' or CATEGORY.Name like N'%" + searchstr + "%'";
+                           sql += " WHERE PRODUCTS.Name like N'%" + searchstr + "%' or Description like N'%" + searchstr + "%' or CATEGORY.Name like N'%" + searchstr + "%'";
                         }
                     }
                     
                 
                 }
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlcom);
-                adapter.Fill(table);
+                
 
-                GridView1.DataSource = table;
+                GridView1.DataSource = sqlUtil.execSelect(sql,null);
                 GridView1.PageIndex = index;
                 GridView1.DataBind();
                 

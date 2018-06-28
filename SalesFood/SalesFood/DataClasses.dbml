@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SalesFood" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=SalesFood;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SalesFoodConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Account" Member="Accounts">
+    <Type Name="Account">
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Account_Order" Member="Orders" ThisKey="Username" OtherKey="Usename" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Order">
+      <Column Name="OrderID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Usename" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="Account_Order" Member="Account" ThisKey="Usename" OtherKey="Username" Type="Account" IsForeignKey="true" />
+      <Association Name="PRODUCT_Order" Member="PRODUCT" ThisKey="ProductID" OtherKey="Id" Type="PRODUCT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRODUCTS" Member="PRODUCTs">
+    <Type Name="PRODUCT">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Img" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Cate_id" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="PRODUCT_Order" Member="Orders" ThisKey="Id" OtherKey="ProductID" Type="Order" />
+      <Association Name="CATEGORY_PRODUCT" Member="CATEGORY" ThisKey="Cate_id" OtherKey="Id" Type="CATEGORY" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CATEGORY" Member="CATEGORies">
+    <Type Name="CATEGORY">
+      <Column Name="Id" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="CATEGORY_PRODUCT" Member="PRODUCTs" ThisKey="Id" OtherKey="Cate_id" Type="PRODUCT" />
+    </Type>
+  </Table>
+</Database>

@@ -22,8 +22,8 @@ namespace SalesFood
                         //load dropdownlist
                         dpCategory.Items.Add(new ListItem("Select category", "-1"));
 
-                        sqlUtil.sqlcom.CommandText = "SELECT * FROM Category";
-                        SqlDataReader dr2 = sqlUtil.sqlcom.ExecuteReader();
+                       String sql = "SELECT * FROM Category";
+                        SqlDataReader dr2 = sqlUtil.execReader(sql,null);
                         if (dr2.HasRows)
                         {
                             while (dr2.Read())
@@ -60,9 +60,9 @@ namespace SalesFood
             }
             if (sqlUtil.connect(lbNoti))
             {
-                sqlUtil.sqlcom.CommandText = "Delete products where id=" + txtID.Text;
+               String sqlDelete = "Delete products where id=" + txtID.Text;
                 
-                lbNoti.Text = "Delete " + sqlUtil.sqlcom.ExecuteNonQuery() + " records";
+                lbNoti.Text = "Delete " + sqlUtil.execInsUpdDel(sqlDelete,null) + " records";
 
 
             }
@@ -112,8 +112,8 @@ namespace SalesFood
             {
                 //get id nexrow
                 var sqlcom = sqlUtil.sqlcom;
-                sqlcom.CommandText = "select dbo.f_NextID()"; //funtion created in database
-                SqlDataReader reader = sqlcom.ExecuteReader(); //alway have result
+                String sql = "select dbo.f_NextID()"; //funtion created in database
+                SqlDataReader reader = sqlUtil.execReader(sql, null); //alway have result
                 reader.Read();
                 int x = reader.GetInt32(0);
                 reader.Close();
@@ -124,23 +124,25 @@ namespace SalesFood
                 sqlUtil.disconnect();
                 sqlUtil.connect(lbNoti);
                 var sqlcom2 = sqlUtil.sqlcom;
-                sqlcom2.CommandText = "update products set name=@name, price=@price, description=@description,img=@img,cate_id=@cate_id where id=@id";
-                sqlcom2.Parameters.Add("@name", System.Data.SqlDbType.NVarChar);
-                sqlcom2.Parameters.Add("@price", System.Data.SqlDbType.Money);
-                sqlcom2.Parameters.Add("@description", System.Data.SqlDbType.NVarChar);
-                sqlcom2.Parameters.Add("@img", System.Data.SqlDbType.NVarChar);
-                sqlcom2.Parameters.Add("@cate_id", System.Data.SqlDbType.VarChar);
-                sqlcom2.Parameters.Add("@id", System.Data.SqlDbType.Int);
 
-                sqlcom2.Parameters["@name"].Value = txtName.Text;
-                sqlcom2.Parameters["@price"].Value = txtPrice.Text;
-                sqlcom2.Parameters["@description"].Value = txtDescription.Text;
-                sqlcom2.Parameters["@img"].Value = path;
-                sqlcom2.Parameters["@cate_id"].Value = dpCategory.SelectedValue;
-                sqlcom2.Parameters["@id"].Value = txtID.Text;
+                String sqlInsert = "Update products set name=@name, price=@price,Description=@description,img=@img,cate_id=@cate_id where products.id=@id";
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter("name", System.Data.SqlDbType.NVarChar));
+                parameters.Add(new SqlParameter("price", System.Data.SqlDbType.Money));
+                parameters.Add(new SqlParameter("description", System.Data.SqlDbType.NVarChar));
+                parameters.Add(new SqlParameter("img", System.Data.SqlDbType.NVarChar));
+                parameters.Add(new SqlParameter("cate_id", System.Data.SqlDbType.VarChar));
+                parameters.Add(new SqlParameter("id", System.Data.SqlDbType.Int));
+
+                parameters[0].Value = txtName.Text;
+                parameters[1].Value = txtPrice.Text;
+                parameters[2].Value = txtDescription.Text;
+                parameters[3].Value = path;
+                parameters[4].Value = dpCategory.SelectedValue;
+                parameters[5].Value = txtID.Text;
                 try
                 {
-                    if (sqlcom2.ExecuteNonQuery() == 1)
+                    if (sqlUtil.execInsUpdDel(sqlInsert, parameters) == 1)
                     {
                         lbNoti.Text = "Update successfully!";
                     }
@@ -150,8 +152,20 @@ namespace SalesFood
                     lbNoti.Text = ex.ToString();
                 }
 
+
             }
             sqlUtil.disconnect();
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            if (sqlUtil.connect(lbNoti)) { 
+                string sql = "SELECT Name,Price,IMG FROM Products where Id="+txtID.Text.Trim();
+                DataList1.DataSource = (sqlUtil.execSelect(sql,null));
+                DataList1.DataBind();
+                sqlUtil.disconnect();
+            }
+
         }
     }
 }

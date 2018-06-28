@@ -48,6 +48,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -71,6 +72,20 @@
     <Content Include="AddProduct.aspx" />
     <Content Include="Edit_Delete.aspx" />
     <Content Include="List_SearchProduct.aspx" />
+    <Content Include="DataClasses.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Account.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
+    <Content Include="Custormer.master" />
+    <Content Include="ShowProduct.aspx" />
+    <Content Include="ProductDetail.aspx" />
+    <None Include="DataClasses.dbml.layout">
+      <DependentUpon>DataClasses.dbml</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
@@ -84,6 +99,19 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custormer.master.cs">
+      <DependentUpon>Custormer.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Custormer.master.designer.cs">
+      <DependentUpon>Custormer.master</DependentUpon>
+    </Compile>
+    <Compile Include="DataClasses.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="EncodeMD5.cs" />
     <Compile Include="ProductManager.master.cs">
       <DependentUpon>ProductManager.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -128,9 +156,47 @@
     <Compile Include="List_SearchProduct.aspx.designer.cs">
       <DependentUpon>List_SearchProduct.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShowProduct.aspx.cs">
+      <DependentUpon>ShowProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShowProduct.aspx.designer.cs">
+      <DependentUpon>ShowProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDetail.aspx.cs">
+      <DependentUpon>ProductDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductDetail.aspx.designer.cs">
+      <DependentUpon>ProductDetail.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
